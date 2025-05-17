@@ -102,7 +102,3 @@ The application uses a custom Retrieval Augmented Generation pipeline:
 - Rename or delete chat sessions as needed
 - Toggle between light and dark mode with the theme button
 - Clear the conversation with the trash button
-
-## License
-
-MIT
