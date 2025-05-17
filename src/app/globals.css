@@ -1,0 +1,362 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+  --primary: #0f172a;
+  --primary-foreground: #f8fafc;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172a;
+  --destructive: #ef4444;
+  --destructive-foreground: #f8fafc;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #0f172a;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: #000000;
+  --foreground: #f8fafc;
+  --card: #111111;
+  --card-foreground: #f8fafc;
+  --popover: #111111;
+  --popover-foreground: #f8fafc;
+  --primary: #f8fafc;
+  --primary-foreground: #0f172a;
+  --secondary: #111111;
+  --secondary-foreground: #f8fafc;
+  --muted: #111111;
+  --muted-foreground: #94a3b8;
+  --accent: #111111;
+  --accent-foreground: #f8fafc;
+  --destructive: #ef4444;
+  --destructive-foreground: #f8fafc;
+  --border: #222222;
+  --input: #222222;
+  --ring: #94a3b8;
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/* Enhanced Chat UI Styles */
+.group\/message {
+  animation: fade-in 0.3s ease;
+}
+
+/* User messages styles */
+.group\/message[data-role="user"] {
+  position: relative;
+}
+
+/* Assistant messages styles */
+.group\/message[data-role="assistant"] {
+  position: relative;
+}
+
+/* Formula 1 Theme additions */
+.group\/message[data-role="user"] {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  border-bottom-right-radius: 0;
+}
+
+.group\/message[data-role="assistant"] {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  border-bottom-left-radius: 0;
+}
+
+/* Fade-in animation */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Make sure the input area is always visible */
+.chat-form {
+  position: sticky;
+  bottom: 0;
+  background-color: var(--background);
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+  padding: 1rem;
+  z-index: 10;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.message-list {
+  padding: 1rem 0;
+  scroll-behavior: smooth;
+}
+
+/* Additional styling for message actions */
+.group-hover\/message\:opacity-100 {
+  transition: opacity 0.2s ease;
+}
+
+.chat-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  justify-content: center;
+}
+
+.chat-suggestions button {
+  transition: all 0.2s ease;
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--foreground);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-size: 14px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.chat-suggestions button:hover {
+  background-color: var(--accent);
+}
+
+.input-container {
+  position: relative;
+}
+
+/* Additional formula 1 racing theme elements */
+.formula1-accent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, #ff0000, #1e1e1e, #ff0000);
+}
+
+.formula1-accent-vertical {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(to bottom, #ff0000, #1e1e1e, #ff0000);
+}
+
+/* Existing styles from here... */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.message-list {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 1.5rem 0;
+  scroll-behavior: smooth;
+}
+
+.message {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  animation: fade-in 0.3s ease;
+  position: relative;
+}
+
+.message-content {
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  max-width: 85%;
+  line-height: 1.5;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.user-message {
+  flex-direction: row-reverse;
+}
+
+.user-message .message-content {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border-bottom-right-radius: 0;
+}
+
+.ai-message .message-content {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+  border-bottom-left-radius: 0;
+}
+
+.avatar-container {
+  margin-top: 2px;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius);
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.user-avatar {
+  background-color: var(--accent);
+  color: var(--foreground);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.typing-indicator {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--secondary);
+  border-radius: var(--radius);
+  width: fit-content;
+  margin-bottom: 1rem;
+  margin-left: 48px;
+  position: relative;
+}
+
+.typing-indicator:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -6px;
+  width: 12px;
+  height: 12px;
+  background-color: var(--secondary);
+  transform: rotate(45deg) translateY(6px);
+}
+
+.typing-indicator span {
+  width: 8px;
+  height: 8px;
+  background-color: var(--muted-foreground);
+  border-radius: 50%;
+  animation: typing 1.4s infinite ease-in-out both;
+}
+
+.typing-indicator span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+}
+
+.input-container {
+  padding: 1rem;
+  border-top: 1px solid var(--border);
+  background-color: var(--background);
+  position: relative;
+}
+
+.input-field {
+  width: 100%;
+  resize: none;
+  border-radius: var(--radius);
+  background-color: var(--muted);
+  color: var(--foreground);
+  padding: 0.75rem 3rem 0.75rem 1rem;
+  min-height: 60px;
+  max-height: 200px;
+  transition: all 0.2s ease;
+  border: 1px solid var(--border);
+  outline: none;
+}
+
+.input-field:focus {
+  box-shadow: 0 0 0 2px var(--ring);
+  border-color: var(--ring);
+}
+
+.send-button {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.send-button:hover {
+  transform: scale(1.05);
+  background-color: var(--ring);
+}
+
+.send-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
