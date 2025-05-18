@@ -82,7 +82,7 @@ npm run seed
 npm run dev
 ```
 
-6. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+6. Open [F1GPT](https://f1-chat-lilac.vercel.app/) with your browser to see the result.
 
 ## RAG Implementation Details
 
