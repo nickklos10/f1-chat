@@ -33,7 +33,7 @@ interface ChatPropsBase {
     messageId: string,
     rating: "thumbs-up" | "thumbs-down"
   ) => void;
-  setMessages?: (messages: any[]) => void;
+  setMessages?: (messages: Message[]) => void;
   transcribeAudio?: (blob: Blob) => Promise<string>;
 }
 
@@ -113,7 +113,7 @@ export function Chat({
     }
 
     if (lastAssistantMessage.parts && lastAssistantMessage.parts.length > 0) {
-      const updatedParts = lastAssistantMessage.parts.map((part: any) => {
+      const updatedParts = lastAssistantMessage.parts.map((part) => {
         if (
           part.type === "tool-invocation" &&
           part.toolInvocation &&
@@ -124,7 +124,7 @@ export function Chat({
             ...part,
             toolInvocation: {
               ...part.toolInvocation,
-              state: "result",
+              state: "result" as const,
               result: {
                 content: "Tool execution was cancelled",
                 __cancelled: true,
@@ -195,11 +195,7 @@ export function Chat({
     <ChatContainer className={className}>
       {isEmpty && append && suggestions ? (
         <div className="flex items-center justify-center h-full py-10">
-          <PromptSuggestions
-            label="Try these prompts ✨"
-            append={append}
-            suggestions={suggestions}
-          />
+          <PromptSuggestions append={append} suggestions={suggestions} />
         </div>
       ) : null}
 
@@ -329,6 +325,7 @@ export const ChatForm = forwardRef<HTMLFormElement, ChatFormProps>(
         ref={ref}
         onSubmit={onSubmit}
         className={cn("p-4 border-t", className)}
+        data-disabled={isPending}
       >
         {children({ files, setFiles })}
       </form>

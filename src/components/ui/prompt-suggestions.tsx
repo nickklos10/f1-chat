@@ -1,13 +1,11 @@
 import Image from "next/image";
 
 interface PromptSuggestionsProps {
-  label: string;
   append: (message: { role: "user"; content: string }) => void;
   suggestions: string[];
 }
 
 export function PromptSuggestions({
-  label,
   append,
   suggestions,
 }: PromptSuggestionsProps) {
