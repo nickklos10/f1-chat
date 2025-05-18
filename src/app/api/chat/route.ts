@@ -113,13 +113,25 @@ export async function POST(req: NextRequest) {
     -------
 `;
 
+  // Create the streaming response with a specific maxTokens to ensure complete responses
   const result = streamText({
     model: openai("gpt-4o-mini"),
     system: systemPrompt,
     messages,
     temperature: 0.2,
+    maxTokens: 1500,
+    stopSequences: [],
   });
 
-  // 6) return a proper SSE data‐stream that useChat/useCompletion can parse
-  return result.toDataStreamResponse();
+  // Convert to a more reliable streaming response
+  const streamResponse = result.toDataStreamResponse({
+    headers: {
+      // Set headers to prevent premature connection closure
+      "Cache-Control": "no-cache, no-transform",
+      Connection: "keep-alive",
+      "X-Accel-Buffering": "no",
+    },
+  });
+
+  return streamResponse;
 }
