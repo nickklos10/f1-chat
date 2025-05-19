@@ -1,8 +1,5 @@
-// src/app/api/chat/route.ts
-
 import { NextRequest } from "next/server";
-import { Message } from "ai";
-import { embed, streamText } from "ai";
+import { embed, streamText, Message } from "ai";
 import { openai } from "@ai-sdk/openai";
 import { DataAPIClient } from "@datastax/astra-db-ts";
 
@@ -126,7 +123,9 @@ export async function POST(req: NextRequest) {
   // Convert to a more reliable streaming response
   const streamResponse = result.toDataStreamResponse({
     headers: {
-      // Set headers to prevent premature connection closure
+      // Force SSE so chunks flush immediately
+      "Content-Type": "text/event-stream",
+      // Prevent any buffering or transformations
       "Cache-Control": "no-cache, no-transform",
       Connection: "keep-alive",
       "X-Accel-Buffering": "no",
