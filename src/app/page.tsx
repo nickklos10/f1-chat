@@ -72,10 +72,10 @@ const Header = ({
 };
 
 const PROMPT_SUGGESTIONS = [
-  "Tell me about the current F1 championship standings",
+  "Who are the drivers for Ferrari this season?",
   "Who is the greatest F1 driver of all time?",
   "Explain the DRS system in Formula 1",
-  "What are the major rule changes in F1 this season?",
+  "Who is the current F1 World Drivers' Champion?",
   "Tell me about the Monaco Grand Prix",
 ];
 
