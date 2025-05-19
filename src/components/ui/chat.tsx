@@ -218,9 +218,7 @@ export function Chat({
           <MessageInput
             value={input}
             onChange={handleInputChange}
-            allowAttachments
-            files={files}
-            setFiles={setFiles}
+            allowAttachments={false}
             stop={handleStop}
             isGenerating={isGenerating}
             transcribeAudio={transcribeAudio}
