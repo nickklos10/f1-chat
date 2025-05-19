@@ -360,3 +360,59 @@ body {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+/* F1 car animations */
+@keyframes moveF1Car {
+  0% {
+    transform: translateX(-25px);
+  }
+  50% {
+    transform: translateX(25px);
+  }
+  100% {
+    transform: translateX(-25px);
+  }
+}
+
+/* Enhanced F1 car animation with bouncing effect */
+@keyframes moveF1CarEnhanced {
+  0% {
+    transform: translateX(-25px) scale(1);
+  }
+  25% {
+    transform: translateX(-10px) scale(1.05);
+  }
+  50% {
+    transform: translateX(25px) scale(1);
+  }
+  75% {
+    transform: translateX(10px) scale(1.05);
+  }
+  100% {
+    transform: translateX(-25px) scale(1);
+  }
+}
+
+.f1-car-animate {
+  /* Multiple animation properties for better browser support */
+  animation-name: moveF1CarEnhanced;
+  animation-duration: 1.8s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  position: relative;
+  display: inline-block;
+
+  /* Add a subtle bounce as a backup animation in case the primary doesn't work */
+  animation: moveF1CarEnhanced 1.8s infinite ease-in-out,
+    bounce 0.8s infinite alternate;
+}
+
+/* Backup bounce animation */
+@keyframes bounce {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-5px);
+  }
+}

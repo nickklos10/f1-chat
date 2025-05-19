@@ -37,6 +37,7 @@ module.exports = {
       animation: {
         "typing-dot-bounce": "typing 1.4s infinite ease-in-out both",
         bounce: "bounce 1s infinite",
+        "f1-car-move": "f1-car-move 1.5s infinite",
       },
       keyframes: {
         bounce: {
@@ -47,6 +48,17 @@ module.exports = {
           "50%": {
             transform: "translateY(-25%)",
             animationTimingFunction: "cubic-bezier(0.8, 0, 1, 1)",
+          },
+        },
+        "f1-car-move": {
+          "0%": {
+            transform: "translateX(-25px)",
+          },
+          "50%": {
+            transform: "translateX(25px)",
+          },
+          "100%": {
+            transform: "translateX(-25px)",
           },
         },
       },

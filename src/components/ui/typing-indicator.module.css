@@ -1,0 +1,34 @@
+@keyframes f1CarMove {
+  0% {
+    transform: translateX(-30px);
+  }
+  50% {
+    transform: translateX(30px);
+  }
+  100% {
+    transform: translateX(-30px);
+  }
+}
+
+.animationWrapper {
+  width: 180px;
+  overflow: visible;
+  position: relative;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.carAnimation {
+  animation: f1CarMove 1.8s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  display: inline-block;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  margin-left: 10px;
+}
